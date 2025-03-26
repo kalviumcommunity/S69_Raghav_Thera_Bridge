@@ -1,0 +1,21 @@
+{
+  "name": "s69_raghav_thera_bridge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalviumcommunity/S69_Raghav_Thera_Bridge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kalviumcommunity/S69_Raghav_Thera_Bridge/issues"
+  },
+  "homepage": "https://github.com/kalviumcommunity/S69_Raghav_Thera_Bridge#readme"
+}
