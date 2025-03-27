@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 // import Dashboard from "./Pages/Dashboard"; // Ensure you have a Dashboard component
 
 const App = () => {
