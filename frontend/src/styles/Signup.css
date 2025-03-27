@@ -34,7 +34,8 @@
 }
 
 /* Input Fields */
-.signup-box input {
+.signup-box input, 
+.signup-box select {
     width: 100%;
     padding: 12px;
     margin: 5px 0;
@@ -47,6 +48,25 @@
     font-weight: 500;
 }
 
+.signup-box select {
+    appearance: none;
+    cursor: pointer;
+    color: black; /* Makes text readable */
+    background: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+    font-weight: 500;
+}
+
+/* When dropdown is focused (clicked) */
+.signup-box select:focus {
+    background: rgba(255, 255, 255, 1);
+    color: black;
+}
+
+/* Ensure options are readable */
+.signup-box select option {
+    background: white;
+    color: black;
+}
 /* Placeholder Color */
 .signup-box input::placeholder {
     color: rgba(255, 255, 255, 0.7);
