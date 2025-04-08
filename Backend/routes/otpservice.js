@@ -42,7 +42,7 @@ const sendOTP = async (email, otp) => {
         const mailOptions = {
             from: `"TheraBridge+" <${process.env.SMTP_EMAIL}>`,
             to: email,
-            subject: "Your OTP Code for TrackMate",
+            subject: "Your OTP Code for TheraBridge+",
             text: `Your OTP code is: ${otp}. It expires in 10 minutes.`,
             html: `<p>Your OTP code is: <strong>${otp}</strong>. It expires in 10 minutes.</p>`,
         };

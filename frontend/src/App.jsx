@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-// import Dashboard from "./Pages/Dashboard"; // Ensure you have a Dashboard component
+import Dashboard from "./Pages/dashboard"; // Ensure you have a Dashboard component
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,8 +24,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} /> */}
+        <Route path="/Signup" element={<Signup />} />
+        { <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} /> }
       </Routes>
     </Router>
   );
