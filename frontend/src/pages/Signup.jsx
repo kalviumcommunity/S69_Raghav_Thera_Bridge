@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Signup.css";
 
-const Signup = () => {
+const Signup = () => {  
   const [name, setName] = useState("");
   const [practiceType, setPracticeType] = useState("individual");
   const [email, setEmail] = useState("");
