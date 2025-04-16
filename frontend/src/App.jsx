@@ -8,7 +8,6 @@ import Dashboard from "./Pages/dashboard";
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check if the user is authenticated by looking for a JWT token
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
