@@ -121,7 +121,7 @@ const Login = () => {
             </span>
           )}
         </p>
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        <p>Don't have an account? <a href="/Signup">Sign Up</a></p>
       </div>
     </div>
   );
