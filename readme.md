@@ -45,3 +45,4 @@ Real-time Notifications: Using Socket.io to implement real-time communication an
 Peer-to-Peer Video Communication: WebRTC integration could allow therapists to have secure video-based interactions, either for community support or remote therapy sessions.
 This stack is designed to be flexible, scalable, and suitable for the therapist support and workflow management system. It focuses on providing a smooth user experience, secure data handling, and efficient backend management. The future enhancements will further differentiate the platform by offering advanced AI capabilities and real-time features.
 
+Frontend link: https://theraabridgee.netlify.app/ 
