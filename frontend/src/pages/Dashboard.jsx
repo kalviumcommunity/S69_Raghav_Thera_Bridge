@@ -1,7 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from "react-router-dom";
 import '../styles/Dashboard.css'; 
 
 const Dashboard = () => {
+    const [showForm, setShowForm] = useState(false);
+    const [therapies, setTherapies] = useState([]);
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        date: '',
+        therapist: '',
+        patient: ''
+    });
+
+    // Fetch all therapies on page load
+    useEffect(() => {
+        fetchTherapies();
+    }, []);
+
+    const fetchTherapies = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/api/therapy');
+            setTherapies(res.data);
+        } catch (error) {
+            console.error('Error fetching therapies:', error);
+        }
+    };
+
+    const handleInputChange = (e) => {
+        setFormData({...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('http://localhost:5000/api/therapy', formData);
+            console.log('Created therapy:', res.data);
+            setShowForm(false);
+            setFormData({ title: '', description: '', date: '', therapist: '', patient: '' });
+            fetchTherapies(); // Refresh list
+        } catch (error) {
+            console.error('Error creating therapy:', error);
+        }
+    };
+
     return (
         <div className="dashboard-container">
             {/* Sidebar */}
@@ -15,19 +58,12 @@ const Dashboard = () => {
                     <a href="#" className="menu-item active">
                         <i className="fas fa-tachometer-alt"></i> Dashboard
                     </a>
-                    <a href="/clients" className="menu-item">
-                        <i className="fas fa-users"></i> Clients
-                    </a>
-                    <a href="/sessions" className="menu-item">
-                        <i className="fas fa-calendar-check"></i> Sessions
-                    </a>
-                    <a href="/thera-connect" className="menu-item">
-                        <i className="fas fa-users"></i> Thera Connect
-                    </a>
-                    <a href="/progress-notes" className="menu-item">
-                        <i className="fas fa-book"></i> Progress Notes
-                    </a>
+                    <Link to="/clients" className="menu-item">Clients</Link>
+                    <Link to="/sessions" className="menu-item">Sessions</Link>
+                    <Link to="/thera-connect" className="menu-item">Thera Connect</Link>
+                    <Link to="/progress-notes" className="menu-item">Progress Notes</Link>
                 </nav>
+
             </div>
 
             {/* Main Content */}
@@ -56,36 +92,36 @@ const Dashboard = () => {
                     </select>
                 </div>
 
-                {/* Stats Cards */}
-                <div className="stats-grid">
-                    <div className="stat-card">
-                        <div className="icon green"><i className="fas fa-calendar-check"></i></div>
-                        <div>
-                            <h3>24</h3>
-                            <p>Active Sessions</p>
-                        </div>
-                    </div>
-                    <div className="stat-card">
-                        <div className="icon blue"><i className="fas fa-users"></i></div>
-                        <div>
-                            <h3>120</h3>
-                            <p>Clients</p>
-                        </div>
-                    </div>
-                    <div className="stat-card">
-                        <div className="icon orange"><i className="fas fa-book"></i></div>
-                        <div>
-                            <h3>15</h3>
-                            <p>Progress Notes</p>
-                        </div>
-                    </div>
-                    <div className="stat-card">
-                        <div className="icon red"><i className="fas fa-calendar-day"></i></div>
-                        <div>
-                            <h3>5</h3>
-                            <p>Upcoming Appointments</p>
-                        </div>
-                    </div>
+                {/* Add Therapy Button */}
+                <div className="add-therapy-section">
+                    <button className="add-therapy-button" onClick={() => setShowForm(!showForm)}>
+                        {showForm ? "Cancel" : "➕ Add Therapy Session"}
+                    </button>
+                </div>
+
+                {/* Therapy Form */}
+                {showForm && (
+                    <form className="therapy-form" onSubmit={handleFormSubmit}>
+                        <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleInputChange} required />
+                        <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleInputChange} />
+                        <input type="date" name="date" value={formData.date} onChange={handleInputChange} required />
+                        <input type="text" name="therapist" placeholder="Therapist" value={formData.therapist} onChange={handleInputChange} />
+                        <input type="text" name="patient" placeholder="Patient" value={formData.patient} onChange={handleInputChange} />
+                        <button type="submit">Save Therapy Session</button>
+                    </form>
+                )}
+
+                {/* List of Therapy Sessions */}
+                <div className="therapy-list">
+                    <h3>Therapy Sessions</h3>
+                    <ul>
+                        {therapies.map((therapy) => (
+                            <li key={therapy._id}>
+                                <strong>{therapy.title}</strong> - {new Date(therapy.date).toLocaleDateString()} <br/>
+                                Therapist: {therapy.therapist} | Patient: {therapy.patient}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>
