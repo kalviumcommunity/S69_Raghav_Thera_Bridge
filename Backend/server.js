@@ -33,7 +33,16 @@ const connectDB = async () => {
 
 // Import routes
 const authRoutes = require("./routes/auth");
-app.use("/api/auth", authRoutes);  // Route for authentication (including OTP)
+const therapyRoutes = require("./routes/therapy");
+
+// Root route (for browser)
+app.get("/", (req, res) => {
+  res.send("TheraBridge Backend Server is running 🚀");
+});
+
+// API routes
+app.use("/api/auth", authRoutes);  
+app.use("/api/therapy", therapyRoutes);
 
 // Start server after DB connection
 const startServer = async () => {

@@ -13,3 +13,13 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+router.get("/", async (req, res) => {
+  try {
+    const therapies = await Therapy.find();
+    res.json(therapies);
+  } catch (error) {
+    console.error("Error fetching therapies:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
