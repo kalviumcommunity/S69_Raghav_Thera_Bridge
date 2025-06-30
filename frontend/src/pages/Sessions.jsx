@@ -46,7 +46,7 @@ const Sessions = () => {
     setShowForm(false);
   };
 
-  const handleFormSubmit = async (e) => {
+ const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingId) {
